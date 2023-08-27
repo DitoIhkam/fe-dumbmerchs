@@ -1,9 +1,9 @@
 def branch = "staging"
-def repo = "https://github.com/DitoIhkam/fe-dumbmerchz.git"
+def repo = "https://github.com/DitoIhkam/fe-dumbmerchs.git"
 def cred = "ditoihkam"
 def dir = "~/fe-dumbmerch"
-def server = "ditoihkam@103.226.139.168"
-def imagename = "dumbmerchz-fe"
+def server = "ditoihkam@103.226.139.181"
+def imagename = "ditoihkam-frontend-cicd"
 def dockerusername = "kelompok2"
 
 
@@ -47,7 +47,7 @@ pipeline {
                         cd ${dir}
                         docker container stop ${imagename} || true
                         docker container rm ${imagename} || true
-                        docker run -d -p 3000:3000 --name="${imagename}"  ${imagename}:latest
+                        docker run -d -p 3001:3000 --name="${imagename}"  ${imagename}:latest
                         exit
                     EOF
                     """
