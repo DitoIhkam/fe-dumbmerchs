@@ -1,9 +1,9 @@
-def branch = "staging"
+def branch = "production"
 def repo = "https://github.com/DitoIhkam/fe-dumbmerchs.git"
 def cred = "ditoihkam"
 def dir = "~/fe-dumbmerch"
 def server = "ditoihkam@103.226.139.181"
-def imagename = "ditoihkam-frontend-cicd"
+def imagename = "frontend-production"
 def dockerusername = "kelompok2"
 
 
