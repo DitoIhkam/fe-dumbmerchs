@@ -32,7 +32,7 @@ pipeline {
                 sshagent([cred]) {
                     sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
                         cd ${dir}
-                        docker build -t ${dockerusername}${imagename}:latest .
+                        docker build -t ${dockerusername}\/${imagename}:latest .
                         exit
                     EOF
                     """
