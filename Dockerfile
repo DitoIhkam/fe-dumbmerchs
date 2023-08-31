@@ -1,12 +1,24 @@
-FROM node:16-alpine AS build
-WORKDIR /app
-COPY . .
-RUN yarn install
-RUN yarn build
+# Use the official Node.js image as the build environment
+FROM node:14-alpine as build
 
-# Tahap 2: Distroless Build
-FROM gcr.io/distroless/nodejs:16
 WORKDIR /app
-COPY --from=build /app/dist /app
-EXPOSE 3000
-CMD [ "app.js" ]
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy application code
+COPY . .
+
+# Start a new build stage
+FROM gcr.io/distroless/nodejs:14
+
+WORKDIR /app
+
+# Copy only the necessary files from the build stage
+COPY --from=build /app /app
+
+# Specify the command to run your application
+CMD ["index.js"]
